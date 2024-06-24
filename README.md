@@ -1,5 +1,3 @@
-<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7209598111235645441" height="886" width="504" frameborder="0" allowfullscreen="" title="Publicação incorporada"></iframe>
-
 #Convem-Challenge
 ## Dasafio da Empresa Convem
 
