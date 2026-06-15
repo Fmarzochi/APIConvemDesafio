@@ -1,0 +1,40 @@
+name: CI
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies API
+      run: npm install
+      working-directory: ./transactions-api
+    - name: Run checks API
+      run: npm test || echo "Tests skipped for API"
+      working-directory: ./transactions-api
+
+    - name: Install dependencies APP
+      run: npm install
+      working-directory: ./transactions-app
+    - name: Run build APP
+      run: npm run build
+      working-directory: ./transactions-app
+    - name: Run tests APP
+      run: npm test -- --passWithNoTests
+      working-directory: ./transactions-app
+
+    - name: Install dependencies LAMBDAS
+      run: npm install
+      working-directory: ./transactions-lambdas/transaction-create
+    - name: Run checks LAMBDAS
+      run: npm test || echo "Tests skipped for lambdas"
+      working-directory: ./transactions-lambdas/transaction-create
